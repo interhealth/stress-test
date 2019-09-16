@@ -91,8 +91,9 @@ public class CCDAExporter {
     person.attributes.put("time", time);
     person.attributes.put("race_lookup", RaceAndEthnicity.LOOK_UP_CDC_RACE);
     person.attributes.put("ethnicity_lookup", RaceAndEthnicity.LOOK_UP_CDC_ETHNICITY_CODE);
-    person.attributes.put("ethnicity_display_lookup",
-        RaceAndEthnicity.LOOK_UP_CDC_ETHNICITY_DISPLAY);
+    person.attributes.put("ethnicity_display_lookup",RaceAndEthnicity.LOOK_UP_CDC_ETHNICITY_DISPLAY);
+    person.attributes.put("seed", person.seed);
+    person.attributes.put("population_seed", person.populationSeed);
 
     StringWriter writer = new StringWriter();
     try {
