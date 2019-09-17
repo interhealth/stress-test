@@ -14,7 +14,12 @@
         <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01"/>
         <!--Result organizer template -->
         <id root="${UUID?api.toString()}"/>
-        <code nullFlavor="NA"/>
+        <code code="005009" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LN" displayName="LABS">
+           <originalText>
+              <reference value="#rsltTestDesc-1"/>
+           </originalText>
+        </code>
+
         <statusCode code="completed"/>
         <effectiveTime>
           <low value="${entry.start?number_to_date?string["yyyyMMddHHmmss"]}"/>
