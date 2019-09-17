@@ -124,7 +124,8 @@ public abstract class Exporter {
       if(bash != ""){
           try{
              Process proc = null;
-             proc = Runtime.getRuntime().exec("sh "+bash+" "+outFilePath.toString());
+             String fileName=filename(person, fileTag, "xml");
+             proc = Runtime.getRuntime().exec("sh "+bash+" "+fileName);
           }
           catch (IOException e) {
                e.printStackTrace();
