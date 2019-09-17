@@ -120,16 +120,16 @@ public abstract class Exporter {
       File outDirectory = getOutputFolder("ccda", person);
       Path outFilePath = outDirectory.toPath().resolve(filename(person, fileTag, "xml"));
       writeNewFile(outFilePath, ccdaXml);
-      try{
-       Process proc = null;
-       String bash=Config.get("exporter.ccda.bash");
-       proc = Runtime.getRuntime().exec("sh "+bash+" "+outFilePath.toString());
-       System.out.println(outFilePath.toString());
-       System.out.println(bash);
-       }
-       catch (IOException e) {
-          e.printStackTrace();
-       }
+      String bash=Config.get("exporter.ccda.bash");
+      if(bash != ""){
+          try{
+             Process proc = null;
+             proc = Runtime.getRuntime().exec("sh "+bash+" "+outFilePath.toString());
+          }
+          catch (IOException e) {
+               e.printStackTrace();
+          }
+      }
     }
     //HST-36
     if (Boolean.parseBoolean(Config.get("exporter.csv.export"))) {
