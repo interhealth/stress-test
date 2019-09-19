@@ -7,8 +7,6 @@
   <templateId root="2.16.840.1.113883.10.20.22.1.2" extension="2015-08-01"/>
   
   <id root="2.16.840.1.113883.19.5" extension="${id}" assigningAuthorityName="https://github.com/synthetichealth/synthea"/>
-  <id root="2.16.840.1.113883.3.135.1" extension="${seed}" assigningAuthorityName="https://github.com/synthetichealth/synthea"/>
-  <id root="2.16.840.1.113883.3.135.2" extension="${population_seed}" assigningAuthorityName="https://github.com/synthetichealth/synthea"/>
   
   <code code="34133-9" displayName="Summarization of episode note" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
   <title>C-CDA R2.1 Patient Record: ${name}</title>
@@ -18,6 +16,8 @@
   <recordTarget>
     <patientRole>
       <id root="2.16.840.1.113883.19.5" extension="${id}" assigningAuthorityName="https://github.com/synthetichealth/synthea"/>
+      <id root="2.16.840.1.113883.3.135.1" extension="${seed}" assigningAuthorityName="https://github.com/synthetichealth/synthea"/>
+      <id root="2.16.840.1.113883.3.135.2" extension="${population_seed}" assigningAuthorityName="https://github.com/synthetichealth/synthea"/>
       <addr use="HP">
         <streetAddressLine>${address}</streetAddressLine>
         <city>${city}</city>
