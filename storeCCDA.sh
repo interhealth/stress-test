@@ -12,7 +12,7 @@ if [ ! -d $sdaDir ]; then
    sudo mkdir -p $sdaDir
 fi
 
-ccontrol session STRESS <<- EOS
+iris session STRESS <<- EOS
 _system
 SYS
 zn "HSLIB" zw ##class(Synthea.CCDAtoSDAConverter).ConvertCCDA("$ccdaDir","$sdaDir","$filename") 
