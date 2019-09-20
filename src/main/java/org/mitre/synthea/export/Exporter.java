@@ -5,6 +5,8 @@ import ca.uhn.fhir.parser.IParser;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -52,7 +54,34 @@ public abstract class Exporter {
       exportRecord(person, "", stopTime);
     }
   }
+   /**
+   * provide the arguments to "sh -c "
+   * */
+public static boolean executeBashCommand(String command) {
+    boolean success = false;
+    System.out.println("Executing BASH command:\n   " + command);
+    Runtime r = Runtime.getRuntime();
+    String[] commands = {"sh", "-c", command};
+    try {
+        Process p = r.exec(commands);
 
+        p.waitFor();
+        BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line = "";
+
+        while ((line = b.readLine()) != null) {
+            System.out.println(line);
+        }
+
+        b.close();
+        success = true;
+    } catch (Exception e) {
+        System.err.println("Failed to execute bash with command: " + command);
+        e.printStackTrace();
+    }
+    return success;
+}
+  
   /**
    * Export a single patient record, into all the formats supported.
    * (Formats may be enabled or disabled by configuration)
@@ -121,21 +150,8 @@ public abstract class Exporter {
       Path outFilePath = outDirectory.toPath().resolve(filename(person, fileTag, "xml"));
       writeNewFile(outFilePath, ccdaXml);
       String bash=Config.get("exporter.ccda.bash");
-          try{
-             Process proc = null;
-             String fileName=filename(person, fileTag, "xml");
-             String cmd="sh "+bash+" "+fileName;
-             cmd="sh /home/synthea/storeCCDA.sh "+fileName;
-             proc = Runtime.getRuntime().exec(cmd);
-             proc.waitFor();
-             //System.out.println(cmd);
-         }
-         catch (InterruptedException e) {
-            e.printStackTrace();
-         }
-         catch (IOException e) {
-            e.printStackTrace();
-         }
+      String cmd=bash+" "+filename(person, fileTag, "xml");
+      executeBashCommand(cmd);
     }
     //HST-36
     if (Boolean.parseBoolean(Config.get("exporter.csv.export"))) {
