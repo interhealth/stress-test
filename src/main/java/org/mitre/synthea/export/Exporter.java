@@ -75,9 +75,16 @@ public static boolean executeBashCommand(String command) {
 
         b.close();
         success = true;
-    } catch (Exception e) {
+    }
+    catch (InterruptedException iex) {
+            iex.printStackTrace();
+    }
+    catch (IOException ioex) {
+        ioex.printStackTrace();
+    }
+    catch (Exception ex) {
         System.err.println("Failed to execute bash with command: " + command);
-        e.printStackTrace();
+        ex.printStackTrace();
     }
     return success;
 }
