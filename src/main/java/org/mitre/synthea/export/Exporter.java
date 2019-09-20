@@ -114,23 +114,28 @@ public abstract class Exporter {
         writeNewFile(outFilePath, bundleJson);
       }
     }
-    //HST-36
+     //HST-36
     if (Boolean.parseBoolean(Config.get("exporter.ccda.export"))) {
       String ccdaXml = CCDAExporter.export(person, stopTime);
       File outDirectory = getOutputFolder("ccda", person);
       Path outFilePath = outDirectory.toPath().resolve(filename(person, fileTag, "xml"));
       writeNewFile(outFilePath, ccdaXml);
       String bash=Config.get("exporter.ccda.bash");
-      if(bash != ""){
           try{
              Process proc = null;
              String fileName=filename(person, fileTag, "xml");
-             proc = Runtime.getRuntime().exec("sh "+bash+" "+fileName);
-          }
-          catch (IOException e) {
-               e.printStackTrace();
-          }
-      }
+             String cmd="sh "+bash+" "+fileName;
+             cmd="sh /home/synthea/storeCCDA.sh "+fileName;
+             proc = Runtime.getRuntime().exec(cmd);
+             proc.waitFor();
+             //System.out.println(cmd);
+         }
+         catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+         catch (IOException e) {
+            e.printStackTrace();
+         }
     }
     //HST-36
     if (Boolean.parseBoolean(Config.get("exporter.csv.export"))) {
