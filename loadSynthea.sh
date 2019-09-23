@@ -3,6 +3,6 @@ cwd=$(pwd)
 iris session STRESS <<- EOS
 _system
 SYS
-zn "HSLIB" d \$SYSTEM.OBJ.LoadDir("$cwd/QDHS/","*.xml","cfk") 
+zn "HSLIB" d \$SYSTEM.OBJ.ImportDir("$cwd/QDHS/","*.xml","cfk") 
 EOS
 
