@@ -15,7 +15,7 @@ fi
 iris session STRESS <<- EOS
 _system
 SYS
-zn "HSLIB" zw ##class(Synthea.CCDAtoSDAConverter).ConvertCCDA("$ccdaDir","$sdaDir","$filename") 
+zn "HSLIB" zw ##class(Synthea.HSLIB.CCDAtoSDAConverter).ConvertCCDA("$ccdaDir","$sdaDir","$filename") h
 EOS
 
 sudo rm -f $ccdaDir/$filename
