@@ -35,6 +35,11 @@ public abstract class Exporter {
    * @param person   Patient to export
    * @param stopTime Time at which the simulation stopped
    */
+  public static String unAccent(String s) {
+     String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+     Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+     return pattern.matcher(temp).replaceAll("");
+  }
   public static void export(Person person, long stopTime) {
     int yearsOfHistory = Integer.parseInt(Config.get("exporter.years_of_history"));
     if (yearsOfHistory > 0) {
@@ -154,7 +159,9 @@ public static boolean executeBashCommand(String command) {
     if (Boolean.parseBoolean(Config.get("exporter.ccda.export"))) {
       String ccdaXml = CCDAExporter.export(person, stopTime);
       File outDirectory = getOutputFolder("ccda", person);
-      Path outFilePath = outDirectory.toPath().resolve(filename(person, fileTag, "xml"));
+      String fileStr=filename(person, fileTag, "xml");
+      String fileEsc=unAccent(fileStr);
+      Path outFilePath = outDirectory.toPath().resolve(fileEsc);
       writeNewFile(outFilePath, ccdaXml);
       String bash=Config.get("exporter.ccda.bash");
       String cmd=bash+" "+filename(person, fileTag, "xml");
