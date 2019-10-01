@@ -2,7 +2,8 @@ package org.mitre.synthea.export;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
-
+import java.text.Normalizer;
+import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
