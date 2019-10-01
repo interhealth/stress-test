@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for UNIX (Red Hat Enterprise Linux for x86-64) 2018.1.1 (Build 312_1_18859U)" ts="2019-10-01 11:47:24">
+<Document name="STRESS.LUT">
+<lookupTable>
+<entry table="STRESS" key="FromLastMRN">1</entry>
+<entry table="STRESS" key="HomeFacilityList">HEALTHALLIANCE</entry>
+<entry table="STRESS" key="HospitalList">HEALTHALLIANCE</entry>
+<entry table="STRESS" key="LastMRN">72337bc9-befd-4806-bf5b-6fd4b0e5b03b</entry>
+<entry table="STRESS" key="LogBool">1</entry>
+<entry table="STRESS" key="MaxPatients">1</entry>
+<entry table="STRESS" key="MaxRecords">50</entry>
+<entry table="STRESS" key="PatientLoyalty">75</entry>
+<entry table="STRESS" key="StoreSDA">0</entry>
+<entry table="STRESS" key="TrackQueue">1</entry>
+<entry table="STRESS" key="TrackpButtons">1</entry>
+</lookupTable>
+</Document></Export>
