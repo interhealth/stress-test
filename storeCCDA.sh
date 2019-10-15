@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-outputDir=/home/synthea/output
+outputDir=/home/stress-test/synthea/output
 ccdaDir=$outputDir/ccda/
 sdaDir=$outputDir/sdarepo/
 filename=$1
@@ -18,7 +18,5 @@ SYS
 zn "HSLIB" zw ##class(Synthea.HSLIB.CCDAtoSDAConverter).ConvertCCDA("$ccdaDir","$sdaDir","$filename") h
 EOS
 
-sudo rm -f $ccdaDir/$filename
-sudo rm -f $sdaDir/$filename
-
-done
+sudo rm -f $ccdaDir$filename
+sudo rm -f $sdaDir$filename
